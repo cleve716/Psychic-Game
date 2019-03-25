@@ -2,68 +2,25 @@
 <html lang="en-us">
 
 <head>
-    <meta charset="utf-8">
-    <title>Build-Psychic-Game</title>
+    <meta charset="UTF-8">
+    <title>Psychic Game-Try 2</title>
 </head>
 
 <body>
-    <!--HTML architecture for front end display-->
-    <div>
-        <h1>The Psychic Game</h1>
-        <h3>Guess which letter I'm thinking of... </h3>
-        <p id="wins-text"></p>
-        <p id="losses-text"></p>
-        <p id="numGuessesLeft-text"></p>
-        <p id="guessesSoFar-text"></p>
-    </div>
-
-    <script type="text/javascript">
-        //The array for computer letter choices
-        var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",];
-        var wins = 0; //Holds the number of total wins.
-        var losses = 0; // Holds the number of total losses.
-        var numGuessesStart = 9; //numGuessesStart begins with 9 guesses. 
-        var guessesSoFar = []; // userGuessesSoFar has brackets to accept data in the form of an array.      
+<h1>The Psychic Game</h1>
+<div>
+    <p id="greetings-text">Guess which letter I'm thinking of...</p>
+    <p id=wins-text></p>
+    <p id=losses-text></p>
+    <p id=picksLeft-text></p>
+    <p id=picksSoFar-text></p>
+</div>
 
 
-        var winsText = document.getElementById("wins-text");// These are variables 
-        var lossesText = document.getElementById("losses-text"); // that hold references 
-        var numGuessesLeftText = document.getElementById("numGuessesLeft-text"); // into the HTML where 
-        var guessesSoFarText = document.getElementById("guessesSoFar-text"); // data will be displayed. 
 
-        var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)]; // This is the Computer's guess.
-        console.log(computerGuess); //CONFIRMED CHOICE IS MADE AND CAPTURED
+   
+    <script src="game.js"></script>
 
-
-        document.onkeyup = function (event) {     // This function is run when a key is pressed. 
-            var userGuess = event.key;  // Identifies which key user pressed
-            console.log(userGuess) //CONFIRMED KEYSTROKE DATA IS CAPTURED        
-
-            if (userGuess === computerGuess) {
-                wins++; //adds one to win column
-                numGuessesStart = 9; //resets number of guesses to 9
-                guessesSoFar = []; // clears array
-            }
-            if (userGuess != computerGuess) {
-                numGuessesStart--; //removes one guess from guess counter
-                guessesSoFar.push(userGuess); //the value of the key pressed is added to the array
-            }
-
-            if (numGuessesStart === 0) {
-                numGuessesStart = 9; //resets number of guesses to 9
-                losses++; // adds one to loss column
-                guessesSoFar = []; // clears array
-               
-            }
-
-            winsText.textContent = "Wins: " + wins; //displays losses
-            lossesText.textContent = "Losses: " + losses; //displays losses
-            numGuessesLeftText.textContent = "Guesses left: " + numGuessesStart; // displays guesses remaining
-            guessesSoFarText.textContent = "Your guesses so far: " + guessesSoFar; //displays user guesses+
-
-
-        };
-    </script>
 
 </body>
 
