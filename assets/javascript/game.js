@@ -21,24 +21,24 @@ var winsText = document.getElementById("wins-text");
 var lossesText = document.getElementById("losses-text");
 var picksLeftText = document.getElementById("picksLeft-text");
 var picksSoFarText = document.getElementById("picksSoFar-text");
-var getComputerPick = function () { // set as a f
+var getComputerPick = function () { // set as a function to be called by var currentPick
     computerPick = computerOptions[Math.floor(Math.random() * computerOptions.length)];
     console.log(computerPick);
 }
-var currentPick = getComputerPick() // selects the computer's pick on startup
+var currentPick = getComputerPick() // selects the computer's pick on startup and is called after win or 9 picks
 
 document.onkeyup = function (event) {  // This function is run whenever the user presses a key.
 
     var userPick = event.key;  // Determines which key was pressed.
-    console.log(userPick);
-    beginningPicks--;
-    picksSoFar.push(userPick);
-    console.log(picksSoFar);
+    console.log(userPick); //consoled out
+    beginningPicks--; //takes a pick away
+    picksSoFar.push(userPick); // the user pick is pushed into the array
+    console.log(picksSoFar); //comsoled out
     greetingsText.textContent = "Pay no attention to the electrodes attached to your head. It's not like you'll receive a debilitating electrical shock if you lose. The kitten in the box next to you, though... that's another story."
 
     if (userPick === computerPick) {
-        wins++;
-        currentPick = getComputerPick();
+        wins++; //
+        getComputerPick();
         beginningPicks = 9;
         picksSoFar = [];
         alert("You saved the kitty! ... this time.");
@@ -63,8 +63,8 @@ document.onkeyup = function (event) {  // This function is run whenever the user
     }
     //greetingsText.textContent= "Pay no attention to the electrodes attached to your head. It's not like you'll receive a debilitating electrical shock if you lose. The kitten in the box next to you, though... that's another story."
 
-    winsText.textContent = "Wins: " + wins;
-    lossesText.textContent = "Kitty shocks: " + losses;
+    winsText.textContent = "Kitty saved: " + wins;
+    lossesText.textContent = "Kitty shocked: " + losses;
     picksLeftText.textContent = "Picks Left: " + beginningPicks;
     picksSoFarText.textContent = "Your Picks So Far: " + picksSoFar.join(", ");
 
